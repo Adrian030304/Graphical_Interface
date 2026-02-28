@@ -2,17 +2,21 @@ package org.InterfataGrafica;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
-import javafx.stage.Stage;
 
 public class JavaFxApplication extends Application {
 
     @Override
     public void start(Stage window) {
+
+        Label textComponent = new Label("Textul acesta este folosit pentru label");
         Button button = new Button("Button for a message");
+
         FlowPane componentGroup = new FlowPane();
+        componentGroup.getChildren().add(textComponent);
         componentGroup.getChildren().add(button);
 
         Scene scene = new Scene(componentGroup);
