@@ -38,7 +38,10 @@ public class JavaFxApplication extends Application {
         textComponents.getChildren().add(new Label("Letters: 0"));
         textComponents.getChildren().add(new Label("Words: 0"));
         textComponents.getChildren().add(new Label("The longest word is:"));
-
+        Button btn = new Button("Generate console output");
+        btn.setOnAction((event) -> {
+            System.out.println("Generare confirmata."); } );
+        layout.setTop(btn);
         layout.setBottom(textComponents);
         layout.setCenter(new TextArea(""));
 
