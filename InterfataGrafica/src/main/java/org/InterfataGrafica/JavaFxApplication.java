@@ -32,21 +32,14 @@ public class JavaFxApplication extends Application {
 ////        layout.setCenter(componentGroup);
 //
         BorderPane layout = new BorderPane();
-        HBox buttons = new HBox();
-        buttons.setSpacing(10);
+        HBox textComponents = new HBox();
+        textComponents.setSpacing(10);
 
-        buttons.getChildren().add(new Label("Primul buton"));
-        buttons.getChildren().add(new Label("Al doilea buton"));
-        buttons.getChildren().add(new Label("Al treilea buton"));
+        textComponents.getChildren().add(new Label("Letters: 0"));
+        textComponents.getChildren().add(new Label("Words: 0"));
+        textComponents.getChildren().add(new Label("The longest word is:"));
 
-        VBox texts = new VBox();
-        texts.setSpacing(10);
-        texts.getChildren().add(new Label("First"));
-        texts.getChildren().add(new Label("Second"));
-        texts.getChildren().add(new Label("Third"));
-
-        layout.setTop(buttons);
-        layout.setLeft(texts);
+        layout.setBottom(textComponents);
         layout.setCenter(new TextArea(""));
 
         Scene scene = new Scene(layout);
