@@ -3,13 +3,12 @@ package org.InterfataGrafica;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.application.Application;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.BorderPane;
+
+import java.util.Arrays;
 
 public class JavaFxApplication extends Application {
 
@@ -32,23 +31,39 @@ public class JavaFxApplication extends Application {
 ////        layout.setCenter(componentGroup);
 //
         BorderPane layout = new BorderPane();
+
+        TextArea zonaText = new TextArea("");
+        layout.setCenter(zonaText);
+
+        Label charsResult = new Label("Letters: ");
+        Label countResult = new Label("Words: ");
+        Label longestString = new Label("The longest word is: ");
+
         HBox textComponents = new HBox();
         textComponents.setSpacing(10);
+        textComponents.getChildren().addAll(charsResult, countResult, longestString);
 
-        textComponents.getChildren().add(new Label("Letters: 0"));
-        textComponents.getChildren().add(new Label("Words: 0"));
-        textComponents.getChildren().add(new Label("The longest word is:"));
-        Button btn = new Button("Generate console output");
-        btn.setOnAction((event) -> {
-            System.out.println("Generare confirmata."); } );
-        layout.setTop(btn);
         layout.setBottom(textComponents);
-        layout.setCenter(new TextArea(""));
+
+        zonaText.textProperty().addListener((change, oldValue, newValue) -> {
+            String[] words = newValue.split(" ");
+            int chars = newValue.length();
+            int wordCount = words.length;
+            String longest = Arrays.stream(words)
+                            .sorted((s1, s2) -> s2.length() - s1.length())
+                            .findFirst()
+                            .get();
+            charsResult.setText("Letters: " + chars);
+            countResult.setText("Words: " + wordCount);
+            longestString.setText("The longest word is: " + longest);
+        });
+
+
 
         Scene scene = new Scene(layout);
         window.setScene(scene);
 
-        window.setTitle("Bun venit");
+        window.setTitle("Editor text");
         window.show();
     }
 
